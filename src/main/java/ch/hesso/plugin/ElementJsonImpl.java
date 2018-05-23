@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ElementJsonImpl implements Element {
-    private final JsonElement element;
+    protected JsonElement element;
     private final String name;
 
 
@@ -17,7 +17,7 @@ public class ElementJsonImpl implements Element {
         this.name = "root";
     }
 
-    private ElementJsonImpl(JsonElement element, String name) {
+    public ElementJsonImpl(JsonElement element, String name) {
         this.element = element;
         this.name = name;
     }
@@ -28,7 +28,7 @@ public class ElementJsonImpl implements Element {
             return Collections.emptyList();
         }
         return this.element.getAsJsonObject().keySet().stream()
-                           .map(key -> new ElementJsonImpl(this.element.getAsJsonObject().get(key), key))
+                           .map(key -> new ch.hesso.xmleditor.editdom.ElementJsonImpl(this.element.getAsJsonObject().get(key), key))
                            .collect(Collectors.toList());
     }
 
@@ -49,4 +49,9 @@ public class ElementJsonImpl implements Element {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    public void addProperty(String name, String text){
+        element.getAsJsonObject().addProperty(name, text);
+    }
 }
+
