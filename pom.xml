@@ -8,6 +8,13 @@
     <artifactId>xmlEditorPlugin</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
+
+        <!-- Lib  pour les tests -->
+        <assertJ.version>3.9.1</assertJ.version>
+        <junit.jupiter.version>5.1.1</junit.jupiter.version>
+        <junit.platform.version>1.1.0</junit.platform.version>
+        <mockito.version>2.18.3</mockito.version>
+
         <!-- Plugins-->
         <compiler.version>3.7.0</compiler.version>
         <maven-site.plugin.version>3.7</maven-site.plugin.version>
@@ -43,10 +50,38 @@
                 <artifactId>auto-service</artifactId>
                 <version>1.0-rc4</version>
             </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+        <!-- JUnit Jupiter Engine
+repo : https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- AssertJ
+        repo: https://mvnrepository.com/artifact/org.assertj/assertj-core
+        doc: http://joel-costigliola.github.io/assertj/assertj-core.html -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertJ.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>ch.hesso</groupId>
             <artifactId>xmleditor</artifactId>
@@ -166,33 +201,6 @@
         </plugins>
     </build>
 
-    <!-- =============================================================== -->
-    <!-- Gestion des rapports -->
-    <!-- =============================================================== -->
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>versions-maven-plugin</artifactId>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>dependency-updates-report</report>
-                            <report>plugin-updates-report</report>
-                            <report>property-updates-report</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jdepend-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </reporting>
+
 
 </project>

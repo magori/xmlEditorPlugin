@@ -11,7 +11,6 @@ public class ElementJsonImpl implements Element {
     protected JsonElement element;
     private final String name;
 
-
     public ElementJsonImpl(JsonElement element) {
         this.element = element;
         this.name = "root";
@@ -28,7 +27,7 @@ public class ElementJsonImpl implements Element {
             return Collections.emptyList();
         }
         return this.element.getAsJsonObject().keySet().stream()
-                           .map(key -> new ch.hesso.xmleditor.editdom.ElementJsonImpl(this.element.getAsJsonObject().get(key), key))
+                           .map(key -> new ElementJsonImpl(this.element.getAsJsonObject().get(key), key))
                            .collect(Collectors.toList());
     }
 
